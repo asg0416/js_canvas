@@ -15,7 +15,7 @@ ctx.fill(); // fill = 채우는 역할
 
 ctx.beginPath() // 경로를 새로 시작하여 이후 코드를 이전과 분리, 레이어분리 개념
 ctx.rect(70, 80, 30, 30);
-ctx.rect(100, 80, 30, 30);
+ctx.rect(100, 110, 30, 30);
 ctx.fillStyle = 'red'; // 마지막 사각형만 빨간색
 ctx.fill();
 
