@@ -8,15 +8,22 @@ const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 800;
 
-ctx.fillRect(250, 50, 100, 200)
-ctx.rect(10, 20, 30, 30);
-ctx.rect(40, 50, 30, 30); // rect = 선을 그리는 역할
-ctx.fill(); // fill = 채우는 역할
+// canvas context의 그림을 그리기위한 시작은 항상 (0, 0) 좌표 기준이다.
+ctx.moveTo(50, 50) // 그림을 그리기 위한 시작 좌표를 옮겨주는 함수
+ctx.lineTo(150, 50) // 시작 좌표에서 목표 좌표까지 선을 생성하며, 단순 생성함수로 색이 표현되지는 않는 상태
+// ctx.stroke() // 중간에 있을 필요 없음
+ctx.lineTo(150, 150)
+ctx.lineTo(50, 150)
+ctx.lineTo(50, 50)
+ctx.stroke() // 선을 실제로 그려주는 함수
 
-ctx.beginPath() // 경로를 새로 시작하여 이후 코드를 이전과 분리, 레이어분리 개념
-ctx.rect(70, 80, 30, 30);
-ctx.rect(100, 110, 30, 30);
-ctx.fillStyle = 'red'; // 마지막 사각형만 빨간색
-ctx.fill();
+/* 
+lineTo 함수로 이미 선은 생성된 상태이며, 마지막에 stroke 함수를 실행시켜 색을 입혀주는 것
+stroke 함수를 중간 중간 넣으면 해당 상태까지의 선이 중복으로 색이 입혀짐
 
-// 즉 canvas는 레이어와 같은 경로가 중요하며, 도형의 선을 그린 후 채워가는 순서
+즉, 
+moveTo :  선을 긋지 않고 좌표이동
+lineTo : 선을 그으며 좌표 이동
+stroke : 선에 색 넣기
+fill : 면에 색 채우기
+*/
