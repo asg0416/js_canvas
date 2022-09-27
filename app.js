@@ -27,14 +27,26 @@ const colors = [
 ];
 
 ctx.lineWidth = 2;
+let isPainting = false;
 
-const onclick = (e) => {
-    ctx.beginPath()
-    ctx.moveTo(0, 0); // 시작 지점 설정
-    const color = colors[Math.floor(Math.random() * colors.length)]
-    ctx.lineTo(e.offsetX, e.offsetY);
-    ctx.strokeStyle = color
-    ctx.stroke();
+const onMove = (e) => {
+    if (isPainting) {
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke()
+        return;
+    }
+    ctx.moveTo(e.offsetX, e.offsetY);
 };
+
+const onMouseDown = (e) => {
+    isPainting = true
+}
+
+const cancelPainting = () => {
+    isPainting = false;
+}
 // 마우스를 움직일때마다 선 그리는 함수 실행
-canvas.addEventListener("mousemove", onclick);
+canvas.addEventListener("mousemove", onMove);
+canvas.addEventListener("mousedown", onMouseDown);
+// canvas.addEventListener("mouseup", cancelPainting);
+window.addEventListener("mouseup", cancelPainting);
