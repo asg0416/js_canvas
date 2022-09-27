@@ -10,13 +10,13 @@ canvas.height = 800;
 
 ctx.fillRect(250, 50, 100, 200)
 ctx.rect(10, 20, 30, 30);
-ctx.rect(40, 50, 30, 30);
-ctx.fill();
+ctx.rect(40, 50, 30, 30); // rect = 선을 그리는 역할
+ctx.fill(); // fill = 채우는 역할
+
+ctx.beginPath() // 경로를 새로 시작하여 이후 코드를 이전과 분리, 레이어분리 개념
 ctx.rect(70, 80, 30, 30);
-ctx.fillStyle = 'red'; // 
+ctx.rect(100, 80, 30, 30);
+ctx.fillStyle = 'red'; // 마지막 사각형만 빨간색
 ctx.fill();
-/*
-fillRect 라인을 제외하고 모두 같은 경로의 같은 레이어를 공유하는 일부이므로
-전체 사각형이 빨간색으로 변경됨
-fillStyle이 같은 경로의 물체에 모두 영향을 끼침
-*/
+
+// 즉 canvas는 레이어와 같은 경로가 중요하며, 도형의 선을 그린 후 채워가는 순서
