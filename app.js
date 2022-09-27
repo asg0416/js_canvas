@@ -8,32 +8,12 @@ const ctx = canvas.getContext('2d');
 canvas.width = 800;
 canvas.height = 800;
 
-ctx.fillRect(210, 200, 15, 100)
-ctx.fillRect(350, 200, 15, 100)
-ctx.fillRect(260, 200, 60, 200)
+ctx.lineWidth = 2
+ctx.moveTo(0,0) // 시작 지점 설정
 
-/*
-참고 : https://www.w3schools.com/tags/canvas_arc.asp
-원 angle 
- 0  * PI : 우측
-0.5 * PI : 하단
- 1  * PI : 좌측
-1.5 * PI : 상단
- 2  * PI : 한 바퀴를 다 돈 이후의 우측
-
-x: 원 중심 x 좌표
-y: 원 중심 y 좌표
-r: 원 반지름
-start angle: 원 테두리의 시작점
-end angle: 원 테두리의 종점
-*/
-ctx.arc(287.5, 130, 50, 0, 2 * Math.PI);
-ctx.stroke()
-ctx.fillStyle = 'yellow'
-ctx.fill()
-
-ctx.beginPath();
-ctx.arc(250, 130, 5, Math.PI, 2 * Math.PI);
-ctx.arc(290, 130, 5, Math.PI, 2 * Math.PI);
-ctx.fillStyle = 'gray'
-ctx.fill()
+const onclick = (e) => {
+    ctx.lineTo(e.offsetX, e.offsetY)
+    ctx.stroke()
+}
+// 마우스를 움직일때마다 선 그리는 함수 실행
+canvas.addEventListener('mousemove', onclick)
