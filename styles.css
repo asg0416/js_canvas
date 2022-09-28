@@ -30,3 +30,8 @@ body {
 .color-option:active{
     opacity: 0.8;
 }
+
+#mode-btn {
+    width: 20vw;
+    margin-top: 2vw;
+}

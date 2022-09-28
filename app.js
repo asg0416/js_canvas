@@ -1,3 +1,4 @@
+const modeBtn = document.querySelector("#mode-btn")
 // Array.from() 사용가능
 const colorOptions = [...document.querySelectorAll(".color-option")]
 const lineWidth = document.querySelector("#line-width");
@@ -13,6 +14,7 @@ canvas.width = window.innerWidth * 0.5;
 canvas.height = window.innerWidth * 0.5;
 ctx.lineWidth = lineWidth.value;
 let isPainting = false;
+let isFilling = false;
 const colors = [
     "#eccc68",
     "#ff7f50",
@@ -32,6 +34,7 @@ const colors = [
 ];
 
 const onMove = (e) => {
+    if (isFilling) return;
     if (isPainting) {
         ctx.lineTo(e.offsetX, e.offsetY);
         ctx.stroke()
@@ -55,17 +58,38 @@ const onLineWidthChange = (e) => {
 
 const onColorChange = (e) => {
     ctx.strokeStyle = e.target.value
+    ctx.fillStyle = e.target.value
 }
 
 const onColorClick = (e) => {
     const colorValue = e.target.dataset.color 
     ctx.strokeStyle = colorValue;
+    ctx.fillStyle = colorValue;
     colorPicker.value = colorValue
+}
+
+const onModeClick = () => {
+    if(isFilling) {
+        isFilling = false;
+        modeBtn.innerText = "라인 모드";
+    }
+    else {
+        isFilling = true;
+        modeBtn.innerText = "채우기 모드";
+    }
+}
+
+const onCanvasClick = () => {
+    if (isFilling) {
+        ctx.fillRect(1,1,canvas.width,canvas.height)
+    }
 }
 
 // 마우스를 움직일때마다 선 그리는 함수 실행
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
+canvas.addEventListener("click", onCanvasClick);
+
 // canvas.addEventListener("mouseup", cancelPainting);
 window.addEventListener("mouseup", cancelPainting);
 lineWidth.addEventListener("change", onLineWidthChange);
@@ -73,3 +97,4 @@ colorPicker.addEventListener('change', onColorChange);
 colorOptions.forEach((el) => {
     el.addEventListener("click", onColorClick);
 })
+modeBtn.addEventListener("click", onModeClick);
