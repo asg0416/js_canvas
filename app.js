@@ -1,3 +1,4 @@
+const eraserBtn = document.querySelector("#eraser-btn")
 const clearBtn = document.querySelector("#clear-btn")
 const modeBtn = document.querySelector("#mode-btn")
 // Array.from() 사용가능
@@ -93,6 +94,12 @@ const onClearClick = () => {
     ctx.fillStyle = colorPicker.value
 }
 
+const onEraserClick = () => {
+    ctx.strokeStyle = "#fff"
+    isFilling = false
+    modeBtn.innerText = "라인 모드"
+}
+
 // 마우스를 움직일때마다 선 그리는 함수 실행
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
@@ -107,3 +114,4 @@ colorOptions.forEach((el) => {
 })
 modeBtn.addEventListener("click", onModeClick);
 clearBtn.addEventListener("click", onClearClick);
+eraserBtn.addEventListener("click", onEraserClick);
