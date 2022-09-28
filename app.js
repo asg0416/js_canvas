@@ -1,3 +1,4 @@
+const clearBtn = document.querySelector("#clear-btn")
 const modeBtn = document.querySelector("#mode-btn")
 // Array.from() 사용가능
 const colorOptions = [...document.querySelectorAll(".color-option")]
@@ -85,6 +86,13 @@ const onCanvasClick = () => {
     }
 }
 
+const onClearClick = () => {
+    ctx.fillStyle = "#ffff";
+    ctx.fillRect(1, 1, canvas.width, canvas.height)
+    ctx.beginPath();
+    ctx.fillStyle = colorPicker.value
+}
+
 // 마우스를 움직일때마다 선 그리는 함수 실행
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
@@ -98,3 +106,4 @@ colorOptions.forEach((el) => {
     el.addEventListener("click", onColorClick);
 })
 modeBtn.addEventListener("click", onModeClick);
+clearBtn.addEventListener("click", onClearClick);

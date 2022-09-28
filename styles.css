@@ -31,6 +31,10 @@ body {
     opacity: 0.8;
 }
 
+.btn {
+    width: 20vw;
+    margin-top: 2vw;
+}
 #mode-btn {
     width: 20vw;
     margin-top: 2vw;
