@@ -1,6 +1,6 @@
 canvas {
-    width: 800px;
-    height: 800px;
+    width: 50vw;
+    height: 50vw;
     border: 10px solid;
 }
 body {

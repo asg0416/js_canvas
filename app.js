@@ -5,8 +5,8 @@ CanvasRenderingContext2D Docs : https://developer.mozilla.org/en-US/docs/Web/API
 Interface 참고 : https://hyunseob.github.io/2016/10/17/typescript-interface/
 */
 const ctx = canvas.getContext("2d");
-canvas.width = 800;
-canvas.height = 800;
+canvas.width = window.innerWidth * 0.5;
+canvas.height = window.innerWidth * 0.5;
 
 const colors = [
     "#eccc68",
@@ -38,7 +38,7 @@ const onMove = (e) => {
     ctx.moveTo(e.offsetX, e.offsetY);
 };
 
-const onMouseDown = (e) => {
+const startPainting = (e) => {
     isPainting = true
 }
 
@@ -47,6 +47,6 @@ const cancelPainting = () => {
 }
 // 마우스를 움직일때마다 선 그리는 함수 실행
 canvas.addEventListener("mousemove", onMove);
-canvas.addEventListener("mousedown", onMouseDown);
+canvas.addEventListener("mousedown", startPainting);
 // canvas.addEventListener("mouseup", cancelPainting);
 window.addEventListener("mouseup", cancelPainting);
