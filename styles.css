@@ -1,6 +1,6 @@
 canvas {
     width: 50vw;
-    height: 50vw;
+    height: 50vh;
     border: 10px solid;
 }
 body {
@@ -18,8 +18,8 @@ body {
     margin-top: 2vw;
 }
 .color-option {
-    width: 5vw;
-    height: 5vw;
+    width: clamp(0.1rem, 5vw, 3rem);
+    height: clamp(0.1rem, 5vw, 3rem);
     border: 1px solid rgb(162, 161, 161);
     border-radius: 10%;
     margin: 0 0.15vw;
@@ -32,10 +32,6 @@ body {
 }
 
 .btn {
-    width: 20vw;
-    margin-top: 2vw;
-}
-#mode-btn {
-    width: 20vw;
+    width: clamp(1rem, 20vw, 10rem);
     margin-top: 2vw;
 }

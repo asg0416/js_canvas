@@ -13,7 +13,7 @@ Interface 참고 : https://hyunseob.github.io/2016/10/17/typescript-interface/
 */
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth * 0.5;
-canvas.height = window.innerWidth * 0.5;
+canvas.height = window.innerHeight * 0.5;
 ctx.lineWidth = lineWidth.value;
 let isPainting = false;
 let isFilling = false;
