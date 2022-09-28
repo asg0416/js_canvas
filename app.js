@@ -1,4 +1,5 @@
-const lineWidth = document.querySelector("#line-width")
+const lineWidth = document.querySelector("#line-width");
+const colorPicker = document.querySelector("#color-picker");
 const canvas = document.querySelector("canvas");
 /*
 canvas API 내부 context는 canvas element에서 2D 그림 렌더링을 위한 객체를 제공하는 인터페이스이다.
@@ -49,9 +50,15 @@ const cancelPainting = () => {
 const onLineWidthChange = (e) => {
     ctx.lineWidth = e.target.value
 }
+
+const onColorChange = (e) => {
+    ctx.strokeStyle = e.target.value
+}
+
 // 마우스를 움직일때마다 선 그리는 함수 실행
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
 // canvas.addEventListener("mouseup", cancelPainting);
 window.addEventListener("mouseup", cancelPainting);
-lineWidth.addEventListener("change", onLineWidthChange)
+lineWidth.addEventListener("change", onLineWidthChange);
+colorPicker.addEventListener('change', onColorChange);
