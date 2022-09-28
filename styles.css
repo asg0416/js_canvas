@@ -9,4 +9,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.color-option-wrapper{
+    display: flex;
+    align-items: center;
+    margin-top: 2vw;
+}
+.color-option {
+    width: 5vw;
+    height: 5vw;
+    border: 1px solid rgb(162, 161, 161);
+    border-radius: 10%;
+    margin: 0 0.15vw;
+}
+.color-option:hover{
+    cursor: pointer;
+}
+.color-option:active{
+    opacity: 0.8;
 }

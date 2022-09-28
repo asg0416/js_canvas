@@ -1,3 +1,5 @@
+// Array.from() 사용가능
+const colorOptions = [...document.querySelectorAll(".color-option")]
 const lineWidth = document.querySelector("#line-width");
 const colorPicker = document.querySelector("#color-picker");
 const canvas = document.querySelector("canvas");
@@ -55,6 +57,12 @@ const onColorChange = (e) => {
     ctx.strokeStyle = e.target.value
 }
 
+const onColorClick = (e) => {
+    const colorValue = e.target.dataset.color 
+    ctx.strokeStyle = colorValue;
+    colorPicker.value = colorValue
+}
+
 // 마우스를 움직일때마다 선 그리는 함수 실행
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
@@ -62,3 +70,6 @@ canvas.addEventListener("mousedown", startPainting);
 window.addEventListener("mouseup", cancelPainting);
 lineWidth.addEventListener("change", onLineWidthChange);
 colorPicker.addEventListener('change', onColorChange);
+colorOptions.forEach((el) => {
+    el.addEventListener("click", onColorClick);
+})
