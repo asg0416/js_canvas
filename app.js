@@ -1,3 +1,4 @@
+const lineWidth = document.querySelector("#line-width")
 const canvas = document.querySelector("canvas");
 /*
 canvas API 내부 context는 canvas element에서 2D 그림 렌더링을 위한 객체를 제공하는 인터페이스이다.
@@ -7,7 +8,8 @@ Interface 참고 : https://hyunseob.github.io/2016/10/17/typescript-interface/
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth * 0.5;
 canvas.height = window.innerWidth * 0.5;
-
+ctx.lineWidth = lineWidth.value;
+let isPainting = false;
 const colors = [
     "#eccc68",
     "#ff7f50",
@@ -26,15 +28,13 @@ const colors = [
     "#1e90ff",
 ];
 
-ctx.lineWidth = 2;
-let isPainting = false;
-
 const onMove = (e) => {
     if (isPainting) {
         ctx.lineTo(e.offsetX, e.offsetY);
         ctx.stroke()
         return;
     }
+    ctx.beginPath()
     ctx.moveTo(e.offsetX, e.offsetY);
 };
 
@@ -45,8 +45,13 @@ const startPainting = (e) => {
 const cancelPainting = () => {
     isPainting = false;
 }
+
+const onLineWidthChange = (e) => {
+    ctx.lineWidth = e.target.value
+}
 // 마우스를 움직일때마다 선 그리는 함수 실행
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
 // canvas.addEventListener("mouseup", cancelPainting);
 window.addEventListener("mouseup", cancelPainting);
+lineWidth.addEventListener("change", onLineWidthChange)
